@@ -266,5 +266,5 @@ if __name__ == '__main__':
         else:
             print('Opção invalida')
 
-
+# Lazim passou por aqui
     
