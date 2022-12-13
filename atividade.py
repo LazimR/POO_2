@@ -68,6 +68,11 @@ class Conta:
     def set_login(self,l):
         self._login = l
 
+    def __str__(self):
+        return f'Número:{self._numero}\n{self._titular}\n'
+
+
+                
     def deposita(self,quantidade):
         if quantidade > 0:
             self.saldo += quantidade
@@ -129,6 +134,8 @@ class Cliente:
     def set_cpf(self,cpf):
         self._cpf = cpf
 
+    def __str__(self):
+        return f'Nome:{self._nome} {self._sobre}\nCPF:{self._cpf}'
 class Historico:
     def __init__(self):
         self.data_abertura = datetime.datetime.now()
@@ -155,10 +162,49 @@ class Banco:
 
     def adiciona_conta(self,c,l):
         self.contas[l] = c
-
+        
     def adiciona_cliente(self,c,cpf):
         self.clientes[cpf] = c
         
+    def remove_conta(self,login):
+        if login in self.contas:
+            del self.contas[login]
+            return True
+        else:
+            return False
+
+    def remove_cliente(self,cpf):
+        if cpf in self.clientes:
+            del self.clientes[cpf]
+            return True
+        else:
+            return False
+
+    def buscar_conta(self,login):
+        if login in self.contas:
+            return self.contas[login]
+        else:
+            return False
+
+    def buscar_cliente(self,cpf):
+        if cpf in self.clientes:
+            return self.clientes[cpf]
+        else:
+            return False
+
+    def mostrar_conta(self,login):
+        if login in self.contas:
+            return self.contas[login].__str__()
+        else:
+            return False
+
+    def mostrar_cliente(self,cpf):
+        if cpf in self.clientes:
+            return self.clientes[cpf].__str__()
+        else:
+            return False
+
+    
 
 def sys_banco(conta):
     while True:
@@ -212,7 +258,7 @@ def sys_banco(conta):
 
 b = Banco()
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     while True:
         opc = input('1 - Login\n2 - Cadastrar\n3 - Sair\n')
         if opc == '1':
@@ -265,6 +311,6 @@ if __name__ == '__main__':
             break
         else:
             print('Opção invalida')
-
+'''
 # Lazim passou por aqui
     
